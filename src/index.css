@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  
+  --color-bento-bg: #050505;
+  --color-bento-card: #111111;
+  --color-bento-border: #222222;
+  --color-accent-blue: #6366f1;
+  --color-accent-purple: #a855f7;
+}
+
+@layer base {
+  body {
+    @apply bg-bento-bg text-white antialiased;
+  }
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+}
+
+.bento-card {
+  @apply bg-bento-card border border-bento-border rounded-2xl p-5 flex flex-col overflow-hidden transition-all duration-300;
+}
+
+.bento-card-hover {
+  @apply hover:border-zinc-700 hover:shadow-xl hover:shadow-white/5;
+}
+
+.accent-gradient {
+  background: linear-gradient(135deg, var(--color-accent-blue) 0%, var(--color-accent-purple) 100%);
+}
+
+.glass-bento {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hide scrollbar for a cleaner bento look */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-800 rounded-full;
+}
+
+@keyframes noise {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+}
+
+@keyframes creative-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.02); }
+}
+
+.noise-overlay {
+  position: absolute;
+  inset: -200%;
+  width: 400%;
+  height: 400%;
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: 0.15;
+  pointer-events: none;
+  animation: noise 0.5s steps(2) infinite;
+  z-index: 10;
+}
+
+.creative-pulse {
+  animation: creative-float 3s ease-in-out infinite;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Lumina Image Studio",
+  "description": "An AI-powered image generation app using Gemini Nano Banana series models.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
